@@ -47,6 +47,7 @@ namespace ClassLibrary1
             WebDriver.Quit();
         }
 
+		///Открывает ссылку
         public static void OpenURL(string URL)
         {
             WebDriver.Navigate().GoToUrl(URL);
