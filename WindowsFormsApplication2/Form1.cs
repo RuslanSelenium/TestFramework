@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ClassLibrary1;
+using OpenQA.Selenium;
 using System.Windows;
 
 namespace WindowsFormsApplication2
@@ -37,6 +38,8 @@ namespace WindowsFormsApplication2
         private void button3_Click(object sender, EventArgs e)
         {
             ClassLibrary1.TestCases.TestForNewFunctions();
+
+
             string[] endPoint = WriteLog.ReadResult();
             //var result = MessageBox.Show(endPoint);
             dataGridView1.ColumnCount = 10;

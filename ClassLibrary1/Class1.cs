@@ -297,6 +297,86 @@ namespace ClassLibrary1
 
     }
 
+    public class Product  // This one was created for product object
+    {
+        public string ProductType; // ('BC'/'CDMagnet'/'Letterhead')
+        public string ProductSize; // ('4x6'/'8.5x11') - It needs to choose radiobutton
+        public string FrontOption ; // ('none'/'full'/'spot')
+        public string BackOption; // ('none'/'full'/'spot')
+        public ushort Quantity; // an positive count
+        public Boolean RoundedCorners; // (yes/no)
+        public string DeliveryType; //('Economy'/'Standart'/'Fast3D'/'Fast2D'/'Fast1D'/'BitGit')
+        public string File1;  // path for file1
+        public string File2;  // path for file2
+        public string Designer; // 'Uploader'/'DV2'/'DaVinci'/'Express'
+
+        public Product(string ProductType, string ProductSize, string Designer, string FrontOption, string BackOption, ushort Quantity, Boolean RoundedCorners, string DeliveryType, string File1, string File2) // Class for Product information
+        {
+            this.ProductType = ProductType;
+            this.ProductSize = ProductSize;
+            this.Designer = Designer;
+            this.FrontOption = FrontOption;
+            this.BackOption = BackOption;
+            this.Quantity = Quantity;
+            this.RoundedCorners = RoundedCorners;
+            this.DeliveryType = DeliveryType;
+            this.File1 = File1;
+            this.File2 = File2;
+        }
+
+        public void Choose_Product() // Choose product by product type
+        {
+            LoginWebItems.AllProductsSpan.Hover();
+            TestFramework.WebDriver.FindElementByLinkText(this.ProductType).Click();
+            WriteLog.WriteLogToFile("Choose "+this.ProductType, true);
+        }
+
+        public void ChooseDesigner() // choose designer, need to be updated (add DV2, DaVinci and Express)
+        {
+            System.Threading.Thread.Sleep(4000);
+            switch(this.Designer)
+            {
+                case "Uploader":
+                    ProductWebItems.UploadDesignButton.Click();
+                    WriteLog.WriteLogToFile("Uploader Designer was choosen", true);
+                    break;
+                default :
+                    ProductWebItems.UploadDesignButton.Click();
+                    WriteLog.WriteLogToFile("Uploader Designer was choosen by default", true);
+                    break;
+            }
+        }
+        
+        public void UploadImages() // Upload Files in Uploader Designer
+        {
+            UploaderWebItems.SelectFileLinkFront.Click();
+            UploaderWebItems.SelectFileFieldFront.SetValue(this.File1);
+            WriteLog.WriteLogToFile("File : " + this.File1 + "was uploaded", true);
+            TestFramework.Delay(3);
+            if (this.File2 != "none")
+            {
+                UploaderWebItems.SelectFileLinkBack.Click();
+                UploaderWebItems.SelectFileFieldBack.SetValue(this.File2);
+                WriteLog.WriteLogToFile("File : " + this.File2 + "was uploaded", true);
+                TestFramework.Delay(4);
+            }
+            UploaderWebItems.ContinueButton.Click();
+            // It should be Spot_UV added
+        }
+
+        public void ApprovalPage()
+        {
+            if (this.FrontOption == "full")
+                ApprovalWebItems.RadioFullUVFront.Click();
+            if (this.BackOption == "full")
+                ApprovalWebItems.RadioFullUVBack.Click();
+            if (this.RoundedCorners == true)
+                ApprovalWebItems.CheckBoxRoundedCorners.Click();
+
+        }
+
+    }
+
     public static class LoginWebItems   // Well, lets create new class LoginWebItems, which contain elements for Login Form (Abdulin R.M. 22.20 28.05.2013)
     {
         public static WebItem LoginLink
@@ -538,26 +618,32 @@ namespace ClassLibrary1
                  WriteLog.WriteLogToFile("<-------------------------------Test Case starting ------------------------------->", true);
                  WriteLog.ClearLog("Result");
                  PagesActions.OpenHomePage();
-                 LoginWebItems.AllProductsSpan.Hover();
-                 LoginWebItems.BC_chosen.Click();
-                 ProductWebItems.UploadDesignButton.Click();
-                 UploaderWebItems.SelectFileLinkFront.Click();
-                 UploaderWebItems.SelectFileFieldFront.SetValue(@"E:\images\1.jpg");
-                 System.Threading.Thread.Sleep(4000);
-                 VerifyClass.VerifyElementDisplayed(UploaderWebItems.FrontImage);
-                 UploaderWebItems.SelectFileLinkBack.Click();
-                 UploaderWebItems.SelectFileFieldBack.SetValue(@"E:\images\2.jpg");
-                 System.Threading.Thread.Sleep(4000);
-                 VerifyClass.VerifyElementDisplayed(UploaderWebItems.BackImage);
-                 UploaderWebItems.ContinueButton.Click();
-                 ApprovalWebItems.RadioFullUVBack.Click();
-                 ApprovalWebItems.RadioFullUVFront.Click();
-                 ApprovalWebItems.CheckBoxRoundedCorners.Click();
-                 WebItem.ChooseDropDownMenuOption("8");
+                 //LoginWebItems.AllProductsSpan.Hover();
+                 //TestFramework.WebDriver.FindElementByLinkText("Letterhead").Click();
+                 //LoginWebItems.BC_chosen.Click();
+                 //ProductWebItems.UploadDesignButton.Click();
+                 //UploaderWebItems.SelectFileLinkFront.Click();
+                 //UploaderWebItems.SelectFileFieldFront.SetValue(@"E:\images\1.jpg");
+                 //System.Threading.Thread.Sleep(4000);
+                 //VerifyClass.VerifyElementDisplayed(UploaderWebItems.FrontImage);
+                 //UploaderWebItems.SelectFileLinkBack.Click();
+                 //UploaderWebItems.SelectFileFieldBack.SetValue(@"E:\images\2.jpg");
+                 //System.Threading.Thread.Sleep(4000);
+                 //VerifyClass.VerifyElementDisplayed(UploaderWebItems.BackImage);
+                 //UploaderWebItems.ContinueButton.Click();
+                 //ApprovalWebItems.RadioFullUVBack.Click();
+                 //ApprovalWebItems.RadioFullUVFront.Click();
+                 //ApprovalWebItems.CheckBoxRoundedCorners.Click();
+                 //WebItem.ChooseDropDownMenuOption("8");
                  System.Threading.Thread.Sleep(4000);
 
-
+                 Product product = new Product("Business Cards", "none", "Uploader", "full", "none", 500, true, "Economy", @"E:\images\1.jpg", @"E:\images\2.jpg");
+                 product.Choose_Product();
+                 product.ChooseDesigner();
+                 product.UploadImages();
+                 product.ApprovalPage();
                  TestFramework.CloseBrowser();
+                 System.Threading.Thread.Sleep(4000);
                  WriteLog.WriteLogToFile("Browser closed", true);
                  WriteLog.WriteLogToFile("<-------------------------------Test Case ending ------------------------------->", true);
              }
