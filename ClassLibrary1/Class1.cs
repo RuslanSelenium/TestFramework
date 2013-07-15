@@ -189,6 +189,32 @@ namespace ClassLibrary1
             }
             return lineArray;
         }
+        public static string FindPricePosition(Product product)  // this function finds from table of prices some price and returns position on DD menu
+        {
+            string PricePath = @"E:\products\" + product.ProductType + ".txt";
+            System.IO.StreamReader PriceFile = new System.IO.StreamReader(PricePath, true);
+            int i = 1;
+            string line;
+            string[] lineArray = new string[50];// = { "asd", "asdasd" };
+            while ((line = PriceFile.ReadLine()) != null)
+            {
+                lineArray[i] = line;
+                i = i + 1;
+            }
+
+            for (i = 1; i <= lineArray.Length; i++)
+            {
+                if (lineArray[i] != null)
+                {
+                    if (lineArray[i].IndexOf(product.Quantity.ToString()) != -1)
+                    {
+                        return i.ToString();
+                    }
+                }
+                else break;
+            }
+            return null;  // need to add exception when null comes
+        }
     }
 
     public class VerifyClass  // This class was created for store verify methods (25.06 12:09)
@@ -235,8 +261,8 @@ namespace ClassLibrary1
         public void Click()
         {
             //TestFramework.FindWebElement(this).Click();
+            WriteLog.WriteLogToFile("Click on finding element :" + TestFramework.FindElementByParameter(this).Text, true);
             TestFramework.FindElementByParameter(this).Click();
-            WriteLog.WriteLogToFile("Click on finding element", true);
         }
 
         public void SetValue(string Value)
@@ -286,8 +312,8 @@ namespace ClassLibrary1
 
             string elementId = elementArrayOptions[1].GetAttribute("id");
             string elementXPath = ".//*[@id='" + elementId + "']/li[" + elementPosition + "]/a";
+            WriteLog.WriteLogToFile("Click on finding element :" + TestFramework.WebDriver.FindElementByXPath(elementXPath).Text, true);
             TestFramework.WebDriver.FindElementByXPath(elementXPath).Click();
-
         }
 
         //public static void UseFile(string path)
@@ -352,13 +378,13 @@ namespace ClassLibrary1
             UploaderWebItems.SelectFileLinkFront.Click();
             UploaderWebItems.SelectFileFieldFront.SetValue(this.File1);
             WriteLog.WriteLogToFile("File : " + this.File1 + "was uploaded", true);
-            TestFramework.Delay(3);
-            if (this.File2 != "none")
+            TestFramework.Delay(5);
+            if (this.File2 != "")
             {
                 UploaderWebItems.SelectFileLinkBack.Click();
                 UploaderWebItems.SelectFileFieldBack.SetValue(this.File2);
                 WriteLog.WriteLogToFile("File : " + this.File2 + "was uploaded", true);
-                TestFramework.Delay(4);
+                TestFramework.Delay(5);
             }
             UploaderWebItems.ContinueButton.Click();
             // It should be Spot_UV added
@@ -372,7 +398,9 @@ namespace ClassLibrary1
                 ApprovalWebItems.RadioFullUVBack.Click();
             if (this.RoundedCorners == true)
                 ApprovalWebItems.CheckBoxRoundedCorners.Click();
-
+            
+            WebItem.ChooseDropDownMenuOption(WriteLog.FindPricePosition(this));
+            ApprovalWebItems.ContinueButton.Click();
         }
 
     }
@@ -546,6 +574,14 @@ namespace ClassLibrary1
             }
         }
 
+        public static WebItem ContinueButton
+        {
+            get
+            {
+                return new WebItem("", "Continue button", ".//*[@id='approval-container']/form/div[2]/div[4]/div/div[2]/div[3]/button");
+            }
+        }
+
     }
 
     public class PagesActions   // Create PageActions clss, which will do some actions for open pages of our website. We should miss hardcode (Abdulin R.M. 22.25 28.05.2013)
@@ -635,13 +671,14 @@ namespace ClassLibrary1
                  //ApprovalWebItems.RadioFullUVFront.Click();
                  //ApprovalWebItems.CheckBoxRoundedCorners.Click();
                  //WebItem.ChooseDropDownMenuOption("8");
-                 System.Threading.Thread.Sleep(4000);
 
-                 Product product = new Product("Business Cards", "none", "Uploader", "full", "none", 500, true, "Economy", @"E:\images\1.jpg", @"E:\images\2.jpg");
+                 Product product = new Product("Business Cards", "none", "Uploader", "full", "none", 2500, true, "Economy", @"E:\images\1.jpg", @"E:\images\2.jpg");
                  product.Choose_Product();
                  product.ChooseDesigner();
                  product.UploadImages();
                  product.ApprovalPage();
+                 
+
                  TestFramework.CloseBrowser();
                  System.Threading.Thread.Sleep(4000);
                  WriteLog.WriteLogToFile("Browser closed", true);

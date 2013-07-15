@@ -38,8 +38,6 @@ namespace WindowsFormsApplication2
         private void button3_Click(object sender, EventArgs e)
         {
             ClassLibrary1.TestCases.TestForNewFunctions();
-
-
             string[] endPoint = WriteLog.ReadResult();
             //var result = MessageBox.Show(endPoint);
             dataGridView1.ColumnCount = 10;
