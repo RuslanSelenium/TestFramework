@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.saveTestCase = new System.Windows.Forms.Button();
+            this.cancel = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.testCaseName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // saveTestCase
             // 
-            this.button1.Location = new System.Drawing.Point(489, 436);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.saveTestCase.Location = new System.Drawing.Point(489, 436);
+            this.saveTestCase.Name = "saveTestCase";
+            this.saveTestCase.Size = new System.Drawing.Size(75, 23);
+            this.saveTestCase.TabIndex = 0;
+            this.saveTestCase.Text = "Save";
+            this.saveTestCase.UseVisualStyleBackColor = true;
+            this.saveTestCase.Click += new System.EventHandler(this.saveTestCase_Click);
             // 
-            // button2
+            // cancel
             // 
-            this.button2.Location = new System.Drawing.Point(12, 436);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.cancel.Location = new System.Drawing.Point(12, 436);
+            this.cancel.Name = "cancel";
+            this.cancel.Size = new System.Drawing.Size(75, 23);
+            this.cancel.TabIndex = 1;
+            this.cancel.Text = "Cancel";
+            this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
             // richTextBox1
             // 
@@ -65,13 +65,13 @@
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
-            // textBox1
+            // testCaseName
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textBox1.Size = new System.Drawing.Size(217, 20);
-            this.textBox1.TabIndex = 3;
+            this.testCaseName.Location = new System.Drawing.Point(13, 44);
+            this.testCaseName.Name = "testCaseName";
+            this.testCaseName.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.testCaseName.Size = new System.Drawing.Size(217, 20);
+            this.testCaseName.TabIndex = 3;
             // 
             // label1
             // 
@@ -109,10 +109,10 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.testCaseName);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cancel);
+            this.Controls.Add(this.saveTestCase);
             this.Name = "NewTestCaseForm";
             this.Text = "New Test Case";
             this.ResumeLayout(false);
@@ -122,10 +122,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button saveTestCase;
+        private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox testCaseName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button3;

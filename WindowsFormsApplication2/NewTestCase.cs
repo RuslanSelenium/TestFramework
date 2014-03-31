@@ -110,48 +110,169 @@ namespace WindowsFormsApplication2
             return compileOk;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public static bool IsFileEmpty(string filename)
+        {
+            try
+            {
+                string[] strok = File.ReadAllLines(filename);
+
+                if (strok.Length == 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (FileNotFoundException e)
+            {
+                return true;
+            }
+
+        }
+
+        public void SaveToFile(string filename)
+        {
+            filename = @"E:\ProjectRepo\TestFramework\WindowsFormsApplication2\bin\Debug\" + filename + ".cs"; // need to remove
+            
+            string[] lines1 = { "using System;", "using System.Collections.Generic;", "using System.Linq;", "using System.Text;", "using ClassLibrary1;", " " };
+            string[] lines2 = { "namespace Test", "{", "class Program", "{", "static void Main(string[] args)", "{", testCaseName.Text + "();", "}" };
+            string[] testCaseBodyBegin = { "public static void " + testCaseName.Text + "()", "{", " " };
+            string[] testCaseBodyBeginEnd = { " ", "}", "}", "}" };
+            string code = richTextBox1.Text;
+
+            if (IsFileEmpty(filename))
+            {
+                StreamWriter newFile = new StreamWriter(filename, true);
+                //prepare new test suite 
+                foreach (string line in lines1)
+                {
+                    Console.WriteLine(line);
+                    newFile.WriteLine(line);
+                }
+                foreach (string line in lines2)
+                {
+                    newFile.WriteLine(line);
+                }
+                foreach (string line in testCaseBodyBegin)
+                {
+                    newFile.WriteLine(line);
+                }
+                newFile.WriteLine(code);        // write code from text box
+                foreach (string line in testCaseBodyBeginEnd)
+                {
+                    newFile.WriteLine(line);
+                }
+                newFile.Close();
+                MessageBox.Show("New Test Suite was Created", "Programm Messages");
+            }
+            else
+            {
+                string[] newLines = GetNewArrayFromFile(filename);
+                StreamWriter newFileRewrite = new StreamWriter(filename, false);
+
+                foreach (string line in newLines)
+                {
+                    newFileRewrite.WriteLine(line);
+                }
+                newFileRewrite.Close();
+                MessageBox.Show("Changes Accepted", "Programm Messages");
+            }
+
+        }
+
+        public string[] GetNewArrayFromFile(string filename)
+        {
+            string line;
+            int counter = 0;
+
+            StreamReader file = new StreamReader(filename);
+            while ((line = file.ReadLine()) != null)
+            {
+                counter++;
+            }
+            file.Close();
+            
+            string[] lines = new string[counter+1];
+            counter = 0;
+            StreamReader file1 = new StreamReader(filename);
+           
+            while ((lines[counter] = file1.ReadLine()) != null)
+            {
+                counter++;
+            }
+            file1.Close();
+
+            for (counter = 0; counter < lines.Length; counter++)
+            {
+                Console.WriteLine(lines[counter]);
+            }
+            Console.WriteLine(lines[12]);
+
+            return ReplaceArray(lines, lines.Length);
+        }
+
+        public string[] ReplaceArray(string[] inputArray, int count)
+        {
+            string[] newArray = new string[count+4];
+            int i = 0;
+
+            for (i = 0; i < 13; i++)
+            {
+                newArray[i] = inputArray[i];
+            }
+            newArray[13] = testCaseName.Text + "();";
+            
+            for (i = 14; i < inputArray.Length-3; i++)
+            {
+                newArray[i] = inputArray[i-1];
+            }
+            newArray[inputArray.Length - 3] = inputArray[inputArray.Length - 4];
+            newArray[i + 1] = "public static void " + testCaseName.Text + "()";
+            newArray[i + 2] = "{";
+            newArray[i + 3] = richTextBox1.Text;
+            newArray[i + 4] = "}";
+            newArray[i + 5] = "}";
+            newArray[i + 6] = "}";
+
+            for (i = 0; i < newArray.Length; i++)
+            {
+                Console.WriteLine(newArray[i]);
+            }
+            return newArray;
+        }
+
+        private void cancel_Click(object sender, EventArgs e)
         {
             string text = richTextBox1.Text;
             
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void saveTestCase_Click(object sender, EventArgs e)
         {
             string PricePath = @"E:\ProjectRepo\TestFramework\ClassLibrary1\TestCases.cs";
-            System.IO.StreamReader PriceFile = new System.IO.StreamReader(PricePath, true);
-            int i = 0;
-            string line;
-            string[] lineArray = new string[10000];// = { "asd", "asdasd" };
-            while ((line = PriceFile.ReadLine()) != null)
-            {
-                Console.WriteLine(line);
-                lineArray[i] = line;
-                i = i + 1;
-            }
+            SaveToFile("123");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string TestCasePath = @"E:\job\TestCase.cs";
-                if (File.Exists(TestCasePath))
-                {
-                    CompileExecutable(TestCasePath);
-                }
-                else
-                {
-                    Console.WriteLine("Input source file not found - {0}",
-                        TestCasePath);
-                }
-            }
-            catch(Exception anError)
-            {
-                MessageBox.Show(anError.Source);
-                MessageBox.Show("eeee!!!");
-            }
+            //try
+            //{
+            //    string TestCasePath = @"E:\job\TestCase.cs";
+            //    if (File.Exists(TestCasePath))
+            //    {
+            //        CompileExecutable(TestCasePath);
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Input source file not found - {0}",
+            //            TestCasePath);
+            //    }
+            //}
+            //catch(Exception anError)
+            //{
+            //    MessageBox.Show(anError.Source);
+            //    MessageBox.Show("eeee!!!");
+            //}
         }
     }
 }
