@@ -19,9 +19,27 @@ namespace WindowsFormsApplication2
         public NewTestCaseForm()
         {
             InitializeComponent();
-            comboBox1.Items.Add("dfsdf");
-            comboBox1.Items.Add("hhhfh");
-            comboBox1.Items.Add("234323");
+            LoadListOfTestSuites();
+        }
+       
+        public void LoadListOfTestSuites()
+        {
+            string[] listOfTestSuites = ReturnListOfTestSuites();
+            foreach (string line in listOfTestSuites)
+            {
+                comboBox1.Items.Add(line);
+            }
+        }
+
+        public string[] ReturnListOfTestSuites()
+        {
+            string[] fileNames = Directory.GetFiles(@"E:\ProjectRepo\TestFramework\WindowsFormsApplication2\bin\Debug", "*.cs");
+            for (int i = 0; i < fileNames.Length; i++ )
+            {
+                fileNames[i] = Path.GetFileNameWithoutExtension(fileNames[i]);
+            }
+
+            return fileNames;
         }
 
         public static bool CompileExecutable(String sourceName)
@@ -249,30 +267,8 @@ namespace WindowsFormsApplication2
 
         private void saveTestCase_Click(object sender, EventArgs e)
         {
-            string PricePath = @"E:\ProjectRepo\TestFramework\ClassLibrary1\TestCases.cs";
-            SaveToFile("123");
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    string TestCasePath = @"E:\job\TestCase.cs";
-            //    if (File.Exists(TestCasePath))
-            //    {
-            //        CompileExecutable(TestCasePath);
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Input source file not found - {0}",
-            //            TestCasePath);
-            //    }
-            //}
-            //catch(Exception anError)
-            //{
-            //    MessageBox.Show(anError.Source);
-            //    MessageBox.Show("eeee!!!");
-            //}
+            SaveToFile(comboBox1.Text);
+            
         }
     }
 }
