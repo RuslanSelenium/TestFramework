@@ -45,27 +45,15 @@ namespace WindowsFormsApplication2
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void testRunButton_Click(object sender, EventArgs e)
         {
-            dataGridView1.ColumnCount = 10;
-            dataGridView1.Columns[0].Width = 520;
-            dataGridView1.Columns[0].Name = "Message";
-            TestCases.Login_TC();
-            string[] endPoint = WriteLog.ReadResult();
-            for (int i = 0; i < endPoint.Length; i++)
-                dataGridView1.Rows.Add(endPoint[i]);
+            TestRunnerForm testRunner = new TestRunnerForm();
+            testRunner.Show();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void exit_Click(object sender, EventArgs e)
         {
-            TestCases.TestForNewFunctions();
-            string[] endPoint = WriteLog.ReadResult();
-            //var result = MessageBox.Show(endPoint);
-            dataGridView1.ColumnCount = 10;
-            dataGridView1.Columns[0].Width = 520;
-            dataGridView1.Columns[0].Name = "Message";
-            for (int i = 0; i < endPoint.Length; i++ )
-                dataGridView1.Rows.Add(endPoint[i]);
+            this.Close();
         }
 
         private void Form1_Load(object sender, EventArgs e)

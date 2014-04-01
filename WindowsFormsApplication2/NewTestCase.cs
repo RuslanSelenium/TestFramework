@@ -128,25 +128,6 @@ namespace WindowsFormsApplication2
             return compileOk;
         }
 
-        public static bool IsFileEmpty(string filename)
-        {
-            try
-            {
-                string[] strok = File.ReadAllLines(filename);
-
-                if (strok.Length == 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            catch (FileNotFoundException e)
-            {
-                return true;
-            }
-
-        }
-
         public void SaveToFile(string filename)
         {
             filename = @"E:\ProjectRepo\TestFramework\WindowsFormsApplication2\bin\Debug\" + filename + ".cs"; // need to remove
@@ -193,6 +174,25 @@ namespace WindowsFormsApplication2
                 }
                 newFileRewrite.Close();
                 MessageBox.Show("Changes Accepted", "Programm Messages");
+            }
+
+        }
+
+        public static bool IsFileEmpty(string filename)
+        {
+            try
+            {
+                string[] strok = File.ReadAllLines(filename);
+
+                if (strok.Length == 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (FileNotFoundException e)
+            {
+                return true;
             }
 
         }
@@ -267,8 +267,9 @@ namespace WindowsFormsApplication2
 
         private void saveTestCase_Click(object sender, EventArgs e)
         {
+            string TestCasePath = @"E:\ProjectRepo\TestFramework\WindowsFormsApplication2\bin\Debug\" + comboBox1.Text + ".cs";
             SaveToFile(comboBox1.Text);
-            
+            CompileExecutable(TestCasePath);
         }
     }
 }
