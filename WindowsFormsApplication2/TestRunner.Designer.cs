@@ -43,7 +43,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(579, 437);
+            this.exitButton.Location = new System.Drawing.Point(144, 383);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(75, 23);
             this.exitButton.TabIndex = 1;
@@ -73,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(666, 472);
+            this.ClientSize = new System.Drawing.Size(270, 415);
             this.Controls.Add(this.runButton);
             this.Controls.Add(this.checklistTestSuites);
             this.Controls.Add(this.exitButton);

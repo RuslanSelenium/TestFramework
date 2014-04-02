@@ -73,6 +73,28 @@ namespace WindowsFormsApplication2
         private void runButton_Click(object sender, EventArgs e)
         {
             RunTheCheckedTestSuites(GetListOfCheckedTestSuites());
+            //Progress();
+        }
+
+        private void ProgressBarRunning()
+        {
+            // Display the ProgressBar control.
+            progressBar1.Visible = true;
+            // Set Minimum to 1 to represent the first file being copied.
+            progressBar1.Minimum = 1;
+            // Set Maximum to the total number of files to copy.
+            progressBar1.Maximum = 100000;
+            // Set the initial value of the ProgressBar.
+            progressBar1.Value = 1;
+            // Set the Step property to a value of 1 to represent each file being copied.
+            progressBar1.Step = 1;
+
+            // Loop through all files to copy.
+            for (int x = 1; x <= 100000; x++)
+            {
+                    // Perform the increment on the ProgressBar.
+                progressBar1.PerformStep();
+            }
         }
     }
 }
