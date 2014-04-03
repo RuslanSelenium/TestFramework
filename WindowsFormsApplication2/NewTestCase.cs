@@ -133,7 +133,7 @@ namespace WindowsFormsApplication2
             filename = @"E:\ProjectRepo\TestFramework\WindowsFormsApplication2\bin\Debug\" + filename + ".cs"; // need to remove
             
             string[] lines1 = { "using System;", "using System.Collections.Generic;", "using System.Linq;", "using System.Text;", "using ClassLibrary1;", " " };
-            string[] lines2 = { "namespace Test", "{", "class Program", "{", "static void Main(string[] args)", "{", testCaseName.Text + "();", "}" };
+            string[] lines2 = { "namespace Test", "{", "class Program", "{", "public string testSuiteName = \"" + testCaseName.Text + "\";", "public int successCount = 0;", "public int failedCount = 0;", "public int allCount = 0;", "static void Main(string[] args)", "{", testCaseName.Text + "();", "}" };
             string[] testCaseBodyBegin = { "public static void " + testCaseName.Text + "()", "{", " " };
             string[] testCaseBodyBeginEnd = { " ", "}", "}", "}" };
             string code = richTextBox1.Text;
@@ -232,14 +232,20 @@ namespace WindowsFormsApplication2
         {
             string[] newArray = new string[count+4];
             int i = 0;
+            int breakTime = 0;
 
-            for (i = 0; i < 13; i++)
+            for (i = 0; i < inputArray.Length; i++)
             {
                 newArray[i] = inputArray[i];
+                if (inputArray[i].Contains("static void Main(string[] args)"))
+                    breakTime = i + 2;
+                if ((i != 0) && (i == breakTime))
+                    break;
             }
-            newArray[13] = testCaseName.Text + "();";
-            
-            for (i = 14; i < inputArray.Length-3; i++)
+            MessageBox.Show(i.ToString());
+            newArray[breakTime] = testCaseName.Text + "();";
+
+            for (i = breakTime + 1; i < inputArray.Length - 3; i++)
             {
                 newArray[i] = inputArray[i-1];
             }

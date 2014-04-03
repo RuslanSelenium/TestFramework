@@ -38,6 +38,7 @@
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fAQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testNewFrame = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,14 +95,14 @@
             // тестКейсToolStripMenuItem
             // 
             this.тестКейсToolStripMenuItem.Name = "тестКейсToolStripMenuItem";
-            this.тестКейсToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.тестКейсToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.тестКейсToolStripMenuItem.Text = "Тест кейс";
             this.тестКейсToolStripMenuItem.Click += new System.EventHandler(this.тестКейсToolStripMenuItem_Click);
             // 
             // тестСьютToolStripMenuItem
             // 
             this.тестСьютToolStripMenuItem.Name = "тестСьютToolStripMenuItem";
-            this.тестСьютToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.тестСьютToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.тестСьютToolStripMenuItem.Text = "Тест сьют";
             // 
             // справкаToolStripMenuItem
@@ -116,20 +117,31 @@
             // fAQToolStripMenuItem
             // 
             this.fAQToolStripMenuItem.Name = "fAQToolStripMenuItem";
-            this.fAQToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fAQToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.fAQToolStripMenuItem.Text = "F A Q ";
             // 
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
+            // 
+            // testNewFrame
+            // 
+            this.testNewFrame.Location = new System.Drawing.Point(119, 250);
+            this.testNewFrame.Name = "testNewFrame";
+            this.testNewFrame.Size = new System.Drawing.Size(185, 60);
+            this.testNewFrame.TabIndex = 5;
+            this.testNewFrame.Text = "Test fo new funcs";
+            this.testNewFrame.UseVisualStyleBackColor = true;
+            this.testNewFrame.Click += new System.EventHandler(this.testNewFrame_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 451);
+            this.Controls.Add(this.testNewFrame);
             this.Controls.Add(this.testRunButton);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.button1);
@@ -157,6 +169,7 @@
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fAQToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.Button testNewFrame;
     }
 }
 

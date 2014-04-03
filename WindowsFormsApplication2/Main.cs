@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ClassLibrary1;
 using OpenQA.Selenium;
 using System.Windows;
+using TestingProject.Tests;
 
 namespace WindowsFormsApplication2
 {
@@ -66,5 +67,12 @@ namespace WindowsFormsApplication2
             NewTestCaseForm f = new NewTestCaseForm();
             f.Show();
         }
+
+        private void testNewFrame_Click(object sender, EventArgs e)
+        {
+            TestingProject.Tests.LoginTests.AssertLogin();
+        }
+
+        
     }
 }
