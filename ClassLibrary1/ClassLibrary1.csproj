@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePage.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="ApprovalPage.cs" />
     <Compile Include="TestCases.cs" />

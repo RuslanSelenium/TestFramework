@@ -7,7 +7,7 @@ public static class ProductWebItems // this class was created for store info  ab
     {
         get
         {
-            return new WebItem("", "", ".//*[@id='designer-upload']/div[1]/a");
+            return new WebItem(".//*[@id='designer-upload']/div[1]/a");
         }
     }
 }

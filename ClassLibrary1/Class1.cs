@@ -21,6 +21,7 @@ namespace ClassLibrary1
     public class TestFramework
     {
         static RemoteWebDriver _WebDriver;
+        public static string baseUrl = "https://www.overnightprints.com";
 
         public static RemoteWebDriver WebDriver
         {
@@ -47,35 +48,22 @@ namespace ClassLibrary1
             WebDriver.Quit();
         }
 
+        public static void OpenPage(string url)
+        {
+            TestFramework.WebDriver.Manage().Window.Maximize();
+            url = baseUrl + url;
+            TestFramework.OpenURL("url");
+            WriteLog.WriteLogToFile("Go to Home page", true);
+        }
 		///Открывает ссылку
         public static void OpenURL(string URL)
         {
             WebDriver.Navigate().GoToUrl(URL);
         }
-
-
-       
-            public static IWebElement FindElementByParameter(/*this IWebDriver driver,*/ WebItem webItem)
+  
+        public static IWebElement FindElementByParameter(/*this IWebDriver driver,*/ WebItem webItem)
             {
-                int timeoutInSeconds = 3; // always use 1 second wait
-                
-                if (webItem.ID != "") 
-                {
-                    var wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(timeoutInSeconds));
-                    return wait.Until<IWebElement>((d) =>
-                        {
-                            return d.FindElement(By.Id(webItem.ID));
-                        });
-                }
-
-                //if (webItem.Name != "")   // was commented cause it should be parameter name store name of webitem, not "name = smtg" of page element
-                //{
-                //    var wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(timeoutInSeconds));
-                //    return wait.Until<IWebElement>((d) =>
-                //    {
-                //        return d.FindElement(By.Name(webItem.Name));
-                //    });
-                //}
+                int timeoutInSeconds = 10; // always use 1 second wait
 
                 if (webItem.XPathQuery != "")
                 {
@@ -251,10 +239,10 @@ namespace ClassLibrary1
         public string Name;
         public string XPathQuery;
 
-        public WebItem(string ID, string Name, string XPathQuery)
+        public WebItem(/*string ID, string Name,*/ string XPathQuery)
         {
-            this.ID = ID;
-            this.Name = Name;  // All elements ClassName was changed by Name (23:49 28.05.2013)
+            /*this.ID = ID;
+            this.Name = Name;  // All elements ClassName was changed by Name (23:49 28.05.2013)*/
             this.XPathQuery = XPathQuery;
         }
 

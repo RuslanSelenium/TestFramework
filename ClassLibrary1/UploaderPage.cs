@@ -7,7 +7,7 @@ public static class UploaderWebItems // this class was created for store info  a
     {
         get
         {
-            return new WebItem("sliceimage", "", "");
+            return new WebItem("");
         }
     }
 
@@ -15,7 +15,7 @@ public static class UploaderWebItems // this class was created for store info  a
     {
         get
         {
-            return new WebItem("fileSelect_file_1", "SelectFileField for Front Image", ".//*[@id='designer-upload']/div[1]/a");
+            return new WebItem(".//*[@id='designer-upload']/div[1]/a");
         }
     }
 
@@ -23,7 +23,7 @@ public static class UploaderWebItems // this class was created for store info  a
     {
         get
         {
-            return new WebItem("fileSelect_file_2", "SelectFileField for Back Image", ".//*[@id='designer-upload']/div[1]/a");
+            return new WebItem(".//*[@id='designer-upload']/div[1]/a");
         }
     }
 
@@ -31,7 +31,7 @@ public static class UploaderWebItems // this class was created for store info  a
     {
         get
         {
-            return new WebItem("noFlashToggle_1", "SelectFile link for Front Image", ".//*[@id='designer-upload']/div[1]/a");
+            return new WebItem(".//*[@id='designer-upload']/div[1]/a");
         }
     }
 
@@ -39,7 +39,7 @@ public static class UploaderWebItems // this class was created for store info  a
     {
         get
         {
-            return new WebItem("noFlashToggle_2", "SelectFile link for Back Image", ".//*[@id='designer-upload']/div[1]/a");
+            return new WebItem(".//*[@id='designer-upload']/div[1]/a");
         }
     }
 
@@ -47,7 +47,7 @@ public static class UploaderWebItems // this class was created for store info  a
     {
         get
         {
-            return new WebItem("", "Front image (Uploader)", ".//*[@id='product_front_uid']/img");
+            return new WebItem(".//*[@id='product_front_uid']/img");
         }
     }
 
@@ -55,7 +55,7 @@ public static class UploaderWebItems // this class was created for store info  a
     {
         get
         {
-            return new WebItem("", "Back image (Uploader)", ".//*[@id='product_back_uid']/img");
+            return new WebItem(".//*[@id='product_back_uid']/img");
         }
     }
 
@@ -63,7 +63,7 @@ public static class UploaderWebItems // this class was created for store info  a
     {
         get
         {
-            return new WebItem("", "Continue button", ".//*[@id='body-main']/div/div/div/div/div[3]/div[4]/div[2]/form/button");
+            return new WebItem(".//*[@id='body-main']/div/div/div/div/div[3]/div[4]/div[2]/form/button");
         }
     }
 }
