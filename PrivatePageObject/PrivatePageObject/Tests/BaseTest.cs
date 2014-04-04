@@ -16,15 +16,17 @@ namespace TestingProject
         public void beforeClass()
         {
             Driver = new FirefoxDriver();
-            Selenium = new WebDriverBackedSelenium(Driver, Utils.baseUrl);
-            Selenium.Start();
-            Selenium.WindowMaximize();
+            //Selenium = new WebDriverBackedSelenium(Driver, Utils.baseUrl);
+            //Selenium.Start();
+            //Selenium.WindowMaximize();
+            Console.WriteLine("start browser!!!!");
         }
 
         [SetUp]
         public void beforeTest(string url)
         {
             Driver.Navigate().GoToUrl(url);
+            Console.WriteLine("go to page");
         }
 
         [TestFixtureTearDown]

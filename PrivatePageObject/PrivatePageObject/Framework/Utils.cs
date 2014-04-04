@@ -18,8 +18,7 @@ namespace TestingProject.Framework
         {
             for (int i = 0; i < timeOut; i++)
             {
-                
-                if (Selenium.IsElementPresent(locator))
+                if (Driver.FindElement(By.XPath(locator)) != null)
                 {
                     return;
                 }

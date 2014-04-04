@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 using Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -11,7 +11,8 @@ namespace TestingProject.Framework
 {
     public class BaseObject
     {
-        public static RemoteWebDriver Driver;
+        public static IWebDriver Driver;
+        //public static IWebDriver Driver;
         public static DefaultSelenium Selenium;
         public static BaseTest preinstall = new BaseTest();
 
