@@ -80,6 +80,7 @@
             this.Controls.Add(this.progressBar1);
             this.Name = "TestRunnerForm";
             this.Text = "Test Runner";
+            this.Load += new System.EventHandler(this.TestRunnerForm_Load);
             this.ResumeLayout(false);
 
         }

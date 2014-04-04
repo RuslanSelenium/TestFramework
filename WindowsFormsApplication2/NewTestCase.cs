@@ -273,9 +273,35 @@ namespace WindowsFormsApplication2
 
         private void saveTestCase_Click(object sender, EventArgs e)
         {
-            string TestCasePath = @"E:\ProjectRepo\TestFramework\WindowsFormsApplication2\bin\Debug\" + comboBox1.Text + ".cs";
-            SaveToFile(comboBox1.Text);
+            string TestCasePath; 
+            if (comboBox1.Text != "")
+            {
+                SaveToFile(comboBox1.Text);
+                TestCasePath = @"E:\ProjectRepo\TestFramework\WindowsFormsApplication2\bin\Debug\" + comboBox1.Text + ".cs";
+            }
+            else
+            {
+                SaveToFile(testCaseName.Text);
+                TestCasePath = @"E:\ProjectRepo\TestFramework\WindowsFormsApplication2\bin\Debug\" + testCaseName.Text + ".cs";
+            }
             CompileExecutable(TestCasePath);
+        }
+
+        private void наВсехСтраницахToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PagesInfo pagesForm = new PagesInfo("BasePage");
+            pagesForm.Show();
+        }
+
+        private void NewTestCaseForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void авторизацияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PagesInfo pagesForm = new PagesInfo("LoginPage");
+            pagesForm.Show();
         }
     }
 }

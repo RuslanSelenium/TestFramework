@@ -96,5 +96,10 @@ namespace WindowsFormsApplication2
                 progressBar1.PerformStep();
             }
         }
+
+        private void TestRunnerForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
