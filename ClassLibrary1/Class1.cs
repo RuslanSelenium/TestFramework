@@ -183,23 +183,6 @@ namespace ClassLibrary1
         }
     }
 
-    public class PagesActions   // Create PageActions clss, which will do some actions for open pages of our website. We should miss hardcode (Abdulin R.M. 22.25 28.05.2013)
-    {
-        public static void OpenHomePage()
-        {
-            TestFramework.WebDriver.Manage().Window.Maximize();
-            //TestFramework.OpenURL("https://www.overnightprints.com/");
-            WriteLog.WriteLogToFile("Go to Home page", true);
-        }
-        
-        public static void OpenLoginPage()              // This function open LogIn page (11:52 18.06.2013)
-        {
-            TestFramework.WebDriver.Manage().Window.Maximize();
-            //TestFramework.OpenURL("https://www.overnightprints.com/login");
-            WriteLog.WriteLogToFile("Go to Login page", true);
-        }
-    }
-
     public class LoginAction  // Create LoginAction which do something for Log-in (Abdulin R.M. 22.30 28.05.2013)
     {
         public static void DoLogin()
