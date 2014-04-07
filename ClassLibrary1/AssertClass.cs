@@ -22,7 +22,7 @@ public class VerifyClass : TestFramework  // This class was created for store ve
 
     public static void VerifyTextInTheElement(string text, WebItem webitem)            // Function verify text on page after user logged with text on xml file (25.06 12:09)
     {
-        IWebElement element = TestFramework.FindElementByParameter(webitem);
+        IWebElement element = TestFramework.FindElement(webitem);
 
         if (element.Text.Contains(text))
         {
@@ -37,7 +37,7 @@ public class VerifyClass : TestFramework  // This class was created for store ve
 
     public static void VerifyElementExists(WebItem webitem)
     {
-        IWebElement element = TestFramework.FindElementByParameter(webitem);
+        IWebElement element = TestFramework.FindElement(webitem);
         if (element != null)
         {
             WriteLog.WriteLogToFile("Element with xPath : " + webitem.xPath + " was found", true);
@@ -51,7 +51,7 @@ public class VerifyClass : TestFramework  // This class was created for store ve
 
     public static void VerifyElementNotExists(WebItem webitem)
     {
-        IWebElement element = TestFramework.FindElementByParameter(webitem);
+        IWebElement element = TestFramework.FindElement(webitem);
         if (element == null)
         {
             WriteLog.WriteLogToFile("Success. Element with xPath : " + webitem.xPath + " was not found", true);

@@ -68,6 +68,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="ApprovalPage.cs" />
     <Compile Include="AssertClass.cs" />
+    <Compile Include="WriteLog.cs" />
     <Compile Include="TestCases.cs" />
     <Compile Include="UploaderPage.cs" />
     <Compile Include="ProductPage.cs" />

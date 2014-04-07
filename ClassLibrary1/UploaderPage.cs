@@ -1,7 +1,7 @@
 ﻿using System;
 using ClassLibrary1;
 
-public static class UploaderWebItems  // this class was created for store info  about elements of Uploader Page (12:02 26.06 )
+public class UploaderWebItems : BasePage  // this class was created for store info  about elements of Uploader Page (12:02 26.06 )
 {  
     public static WebItem AddImageButton
     {
