@@ -38,7 +38,7 @@ public class TestCases   // Create Test Case class for test cases functons
     {
         TestFramework.OpenBrowser("/login");
         LoginWebItems.UserNameTextBox.SetValue("ruslan.abdulin@opensoftdev.ru");
-        LoginWebItems.PasswordTextBox.SelectFromMenu("123456");
+        LoginWebItems.PasswordTextBox.SetValue("123456");
         LoginWebItems.LoginButton.Click();
         VerifyClass.VerifyTextInTheElement("Ruslanko Stepanko", MainPage.linkUsename);
         TestFramework.CloseBrowser();

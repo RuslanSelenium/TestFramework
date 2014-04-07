@@ -27,23 +27,23 @@ namespace WindowsFormsApplication2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //TestCases.Product_TC();
-            WriteLog.WriteLogToFile("<-------------------------------Test Case starting ------------------------------->", true);
-            PagesActions.OpenLoginPage();
-            LoginAction.DoLogin();
-            if (VerifyClass.VerifyLoginText(LoginWebItems.LoggedGreetings.TakeElementText()) == true)
-            {
-                count++;
-                total++;
-                WriteLog.WriteResult(total.ToString() + " : " + "Verification successful");
-            }
-            else
-            {
-                total++;
-                WriteLog.WriteResult(total.ToString() + " : " + "Verification failed");
-            }
-            TestFramework.CloseBrowser();
-            WriteLog.WriteLogToFile("<-------------------------------Test Case ending ------------------------------->", true);
+            ////TestCases.Product_TC();
+            //WriteLog.WriteLogToFile("<-------------------------------Test Case starting ------------------------------->", true);
+            //PagesActions.OpenLoginPage();
+            //LoginAction.DoLogin();
+            //if (VerifyClass.VerifyLoginText(LoginWebItems.LoggedGreetings.TakeElementText()) == true)
+            //{
+            //    count++;
+            //    total++;
+            //    WriteLog.WriteResult(total.ToString() + " : " + "Verification successful");
+            //}
+            //else
+            //{
+            //    total++;
+            //    WriteLog.WriteResult(total.ToString() + " : " + "Verification failed");
+            //}
+            //TestFramework.CloseBrowser();
+            //WriteLog.WriteLogToFile("<-------------------------------Test Case ending ------------------------------->", true);
 
         }
 
@@ -71,7 +71,7 @@ namespace WindowsFormsApplication2
 
         private void testNewFrame_Click(object sender, EventArgs e)
         {
-            TestingProject.Tests.LoginTests.AssertLogin();
+            TestCases.TestForNewFunctions2();
         }
 
         
