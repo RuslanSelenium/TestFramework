@@ -182,18 +182,5 @@ namespace ClassLibrary1
             WriteLog.WriteLogToFile("Hovering ..... next - a little delay (1 second)", true);
         }
     }
-
-    public class LoginAction  // Create LoginAction which do something for Log-in (Abdulin R.M. 22.30 28.05.2013)
-    {
-        public static void DoLogin()
-        {
-            string loginFile = XmlWork.XmlParseMajorCriteria("parameters.xml", "login");
-            LoginWebItems.UserNameTextBox.SetValue(ClassLibrary1.XmlWork.XmlParseMajorCriteria(loginFile, "login_name"));
-            LoginWebItems.PasswordTextBox.SetValue(ClassLibrary1.XmlWork.XmlParseMajorCriteria(loginFile, "login_password"));
-            LoginWebItems.LoginButton.Click();
-
-            //TestFramework.Delay();
-        }
-    }
 }
 
