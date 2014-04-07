@@ -12,18 +12,18 @@ public class TestCases    // Create Test Case class for test cases functons
         WriteLog.WriteLogToFile("<-------------------------------Test Case starting ------------------------------->", true);
         PagesActions.OpenLoginPage();
         LoginAction.DoLogin();
-        if (VerifyClass.VerifyLoginText(LoginWebItems.LoggedGreetings.TakeElementText()) == true)
-        {
-            count++;
-            total++;
-            WriteLog.WriteResult(total.ToString() + " : " + "Verification successful");
-        }
-        else
-        {
-            total++;
-            WriteLog.WriteResult(total.ToString() + " : " + "Verification failed");
-        }
-        TestFramework.CloseBrowser();
+        ////if (VerifyClass.VerifyLoginText(LoginWebItems.LoggedGreetings.TakeElementText()) == true)
+        //{
+        //    count++;
+        //    total++;
+        //    WriteLog.WriteResult(total.ToString() + " : " + "Verification successful");
+        //}
+        //else
+        //{
+        //    total++;
+        //    WriteLog.WriteResult(total.ToString() + " : " + "Verification failed");
+        //}
+        //TestFramework.CloseBrowser();
         WriteLog.WriteLogToFile("<-------------------------------Test Case ending ------------------------------->", true);
     }
 
@@ -31,8 +31,8 @@ public class TestCases    // Create Test Case class for test cases functons
     {
         WriteLog.WriteLogToFile("<-------------------------------Test Case starting ------------------------------->", true);
         PagesActions.OpenHomePage();
-        LoginWebItems.AllProductsSpan.Hover();
-        LoginWebItems.BC_chosen.Click();
+       //LoginWebItems.AllProductsSpan.Hover();
+        //LoginWebItems.BC_chosen.Click();
         WriteLog.WriteLogToFile("<-------------------------------Test Case ending ------------------------------->", true);
     }
 

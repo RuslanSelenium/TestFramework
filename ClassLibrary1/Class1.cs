@@ -65,7 +65,7 @@ namespace ClassLibrary1
             {
                 int timeoutInSeconds = 10; // always use 1 second wait
 
-                if (webItem.XPathQuery != "")
+                if (webItem.xPath != "")
                 {
                     var wait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(timeoutInSeconds));
 
@@ -73,7 +73,7 @@ namespace ClassLibrary1
                     {
                         return wait.Until<IWebElement>((d) =>
                     {
-                            return d.FindElement(By.XPath(webItem.XPathQuery));
+                            return d.FindElement(By.XPath(webItem.xPath));
 
                     });
                     }
@@ -237,13 +237,13 @@ namespace ClassLibrary1
     {
         public string ID;
         public string Name;
-        public string XPathQuery;
+        public string xPath;
 
-        public WebItem(/*string ID, string Name,*/ string XPathQuery)
+        public WebItem(/*string ID, string Name,*/ string xPath)
         {
             /*this.ID = ID;
             this.Name = Name;  // All elements ClassName was changed by Name (23:49 28.05.2013)*/
-            this.XPathQuery = XPathQuery;
+            this.xPath = xPath;
         }
 
         public void Click()
@@ -265,7 +265,6 @@ namespace ClassLibrary1
             IWebElement hoverElement = TestFramework.FindElementByParameter(this);
             builder.MoveToElement(hoverElement).Perform();
             WriteLog.WriteLogToFile("Hovering ..... next - a little delay (1 second)", true);
-            TestFramework.Delay(1);
         }
 
         public string TakeElementText()          // Function return elements text
@@ -366,7 +365,7 @@ namespace ClassLibrary1
 
         public void Choose_Product() // Choose product by product type
         {
-            LoginWebItems.AllProductsSpan.Hover();
+            //LoginWebItems.AllProductsSpan.Hover();
             TestFramework.WebDriver.FindElementByLinkText(this.ProductType).Click();
             WriteLog.WriteLogToFile("Choose "+this.ProductType, true);
         }
@@ -392,13 +391,13 @@ namespace ClassLibrary1
             UploaderWebItems.SelectFileLinkFront.Click();
             UploaderWebItems.SelectFileFieldFront.SetValue(this.File1);
             WriteLog.WriteLogToFile("File : " + this.File1 + "was uploaded", true);
-            TestFramework.Delay(10);
+            //TestFramework.Delay(10);
             if (this.File2 != "")
             {
                 UploaderWebItems.SelectFileLinkBack.Click();
                 UploaderWebItems.SelectFileFieldBack.SetValue(this.File2);
                 WriteLog.WriteLogToFile("File : " + this.File2 + "was uploaded", true);
-                TestFramework.Delay(5);
+                //TestFramework.Delay(5);
             }
             UploaderWebItems.ContinueButton.Click();
             // It should be Spot_UV added
@@ -406,7 +405,7 @@ namespace ClassLibrary1
 
         public void ApprovalPage()
         {
-            TestFramework.Delay(3);
+            //TestFramework.Delay(3);
             if (this.FrontOption == "full")
                 ApprovalWebItems.RadioFullUVFront.Click();
             if (this.BackOption == "full")
@@ -446,7 +445,7 @@ namespace ClassLibrary1
             LoginWebItems.PasswordTextBox.SetValue(ClassLibrary1.XmlWork.XmlParseMajorCriteria(loginFile, "login_password"));
             LoginWebItems.LoginButton.Click();
 
-            TestFramework.Delay();
+            //TestFramework.Delay();
         }
     }
 }
