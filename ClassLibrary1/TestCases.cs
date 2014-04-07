@@ -7,40 +7,10 @@ public class TestCases    // Create Test Case class for test cases functons
 
     public static int count = 0;
 
-    public static void Login_TC()
-    {
-        WriteLog.WriteLogToFile("<-------------------------------Test Case starting ------------------------------->", true);
-        PagesActions.OpenLoginPage();
-        LoginAction.DoLogin();
-        ////if (VerifyClass.VerifyLoginText(LoginWebItems.LoggedGreetings.TakeElementText()) == true)
-        //{
-        //    count++;
-        //    total++;
-        //    WriteLog.WriteResult(total.ToString() + " : " + "Verification successful");
-        //}
-        //else
-        //{
-        //    total++;
-        //    WriteLog.WriteResult(total.ToString() + " : " + "Verification failed");
-        //}
-        //TestFramework.CloseBrowser();
-        WriteLog.WriteLogToFile("<-------------------------------Test Case ending ------------------------------->", true);
-    }
-
-    public static void Product_TC()
-    {
-        WriteLog.WriteLogToFile("<-------------------------------Test Case starting ------------------------------->", true);
-        PagesActions.OpenHomePage();
-       //LoginWebItems.AllProductsSpan.Hover();
-        //LoginWebItems.BC_chosen.Click();
-        WriteLog.WriteLogToFile("<-------------------------------Test Case ending ------------------------------->", true);
-    }
-
     public static void TestForNewFunctions()
     {
         WriteLog.WriteLogToFile("<-------------------------------Test Case starting ------------------------------->", true);
         WriteLog.ClearLog("Result");
-        PagesActions.OpenHomePage();
         //LoginWebItems.AllProductsSpan.Hover();
         //TestFramework.WebDriver.FindElementByLinkText("Letterhead").Click();
         //LoginWebItems.BC_chosen.Click();
