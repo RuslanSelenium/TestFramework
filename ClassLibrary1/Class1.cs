@@ -61,7 +61,7 @@ namespace ClassLibrary1
             WebDriver.Navigate().GoToUrl(URL);
         }
   
-        public static IWebElement FindElementByParameter(/*this IWebDriver driver,*/ WebItem webItem)
+        public static IWebElement FindElementByParameter(WebItem webItem)
             {
                 int timeoutInSeconds = 10; // always use 1 second wait
 
@@ -100,10 +100,10 @@ namespace ClassLibrary1
         //    return null;
         //}
 
-        public static void Delay(int Seconds = 10)
-        {
-            System.Threading.Thread.Sleep(Seconds * 1000);
-        }
+        //public static void Delay(int Seconds = 10)
+        //{
+        //    System.Threading.Thread.Sleep(Seconds * 1000);
+        //}
 
     }
 

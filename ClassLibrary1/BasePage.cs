@@ -3,6 +3,8 @@ using ClassLibrary1;
 
 public class BasePage
 {
+    public static string baseUrl = "http://www.overnightprints.com";
+
     public static WebItem linkAllProductDDMenu // Кнопка по которой выпадает меню с продуктами
     {
         get
