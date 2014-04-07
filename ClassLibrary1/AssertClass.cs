@@ -7,8 +7,6 @@ using OpenQA.Selenium;
 
 public class VerifyClass : TestFramework  // This class was created for store verify methods (25.06 12:09)
 {
-    public static string loginFile = XmlWork.XmlParseMajorCriteria("parameters.xml", "login");
-
     public static void VerifyTextPresent(string text)
     {
         if (WebDriver.PageSource.Contains(text))

@@ -79,44 +79,25 @@ namespace ClassLibrary1
                 return null;
             }
     }
-
-    public class XmlWork  // This class was created for some options with XML file (04.06 22:45)
-    {
-        public static string XmlParseMajorCriteria(string filename, string criteria)   // This function takes a Main Tag of XML (04.06 22:45) (Edited 08.06 1:12)
-        {
-            XDocument doc = XDocument.Load(filename);  // need to add try catch for filename
-            IEnumerable<XNode> dnas =
-                from node in doc.DescendantNodes()
-                select node;
-            foreach (XNode node in dnas)
-            {
-                if ((node is XElement) && ((node as XElement).Name == criteria))
-                {
-                    return (node as XElement).Value;
-                }
-            }
-            return ("Element " + "<" + criteria + ">" + " not found");
-        }
-    }
     
     public class WriteLog // This class was created for write some records in Log file (24.06. 17:30)
     {
-        public static string ResultPath = XmlWork.XmlParseMajorCriteria("parameters.xml", "Result");
+        public static string ResultPath = @"E:\logs\Result.txt";
 
-        public static void ClearLog(string fileTag)
+        public static void ClearLog(string filename)
         {
-            string fileName = XmlWork.XmlParseMajorCriteria("parameters.xml", fileTag);
-            System.IO.StreamWriter file = new System.IO.StreamWriter(fileName, false);
+            filename = @"E:\logs\" + filename;
+            System.IO.StreamWriter file = new System.IO.StreamWriter(filename, false);
             file.Write("");
             file.Close();
 
         }
         public static void WriteLogToFile(string line, Boolean flag)
         {
-            string TClog = XmlWork.XmlParseMajorCriteria("parameters.xml", "TCLog"); // added for load path from parameters.xml
-            string Errlog = XmlWork.XmlParseMajorCriteria("parameters.xml", "ErrLog");
+            string TClog = @"E:\logs\TC_Logs.txt";
+            string Errlog = @"E:\logs\Error_Logs.txt";
             DateTime date = DateTime.UtcNow;
-            DateTime dateOnly = date;//.Date;
+            DateTime dateOnly = date;
             string dateString = dateOnly.ToString("MM/dd/yyyy HH:mm");
             System.IO.StreamWriter fileError = new System.IO.StreamWriter(Errlog, true);
             System.IO.StreamWriter fileTC = new System.IO.StreamWriter(TClog, true);
