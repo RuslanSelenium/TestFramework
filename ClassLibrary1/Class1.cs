@@ -21,7 +21,7 @@ namespace ClassLibrary1
     public class TestFramework
     {
         static RemoteWebDriver _WebDriver;
-        public static string baseUrl = "https://www.overnightprints.com";
+        public static string baseUrl = "https://stack1.overnightprints.com";
 
         public static RemoteWebDriver WebDriver
         {
@@ -55,7 +55,7 @@ namespace ClassLibrary1
             TestFramework.OpenURL("url");
             WriteLog.WriteLogToFile("Go to Home page", true);
         }
-		///Открывает ссылку
+
         public static void OpenURL(string URL)
         {
             WebDriver.Navigate().GoToUrl(URL);
@@ -85,26 +85,6 @@ namespace ClassLibrary1
                 }
                 return null;
             }
-        
-        //public static IWebElement FindWebElement(WebItem webItem) //This part of code must be commented, cause we add Wait method
-        //{
-        //    if (webItem.ID != "")
-        //        return WebDriver.FindElementById(webItem.ID);
-
-        //    if (webItem.Name != "")
-        //        return WebDriver.FindElementByName(webItem.Name);
-
-        //    if (webItem.XPathQuery != "")
-        //        return WebDriver.FindElementByXPath(webItem.XPathQuery);
-
-        //    return null;
-        //}
-
-        //public static void Delay(int Seconds = 10)
-        //{
-        //    System.Threading.Thread.Sleep(Seconds * 1000);
-        //}
-
     }
 
     public class XmlWork  // This class was created for some options with XML file (04.06 22:45)
@@ -192,14 +172,12 @@ namespace ClassLibrary1
 
         public void Click()
         {
-            //TestFramework.FindWebElement(this).Click();
-            WriteLog.WriteLogToFile("Click on finding element :" + TestFramework.FindElementByParameter(this).Text, true);
+            WriteLog.WriteLogToFile("Click on finding element with xPath:" + this.xPath, true);
             TestFramework.FindElementByParameter(this).Click();
         }
 
         public void SetValue(string Value)
         {
-            //TestFramework.FindWebElement(this).SendKeys(Value);
             TestFramework.FindElementByParameter(this).SendKeys(Value);
         }
 
@@ -209,20 +187,6 @@ namespace ClassLibrary1
             IWebElement hoverElement = TestFramework.FindElementByParameter(this);
             builder.MoveToElement(hoverElement).Perform();
             WriteLog.WriteLogToFile("Hovering ..... next - a little delay (1 second)", true);
-        }
-
-        public string TakeElementText()          // Function return elements text
-        {
-            try
-            {
-                IWebElement element = TestFramework.FindElementByParameter(this);
-                return element.Text;
-            }
-            catch (Exception e)
-            {
-                WriteLog.WriteLogToFile("Exception : " + e, false);
-            }
-            return "";
         }
     }
 
