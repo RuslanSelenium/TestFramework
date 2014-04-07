@@ -37,33 +37,26 @@ namespace ClassLibrary1
             }
         }
 
-        public static void OpenBrowser() // function just open browser and use new FF driver (11:32 26.06)
+        public static void OpenBrowser(string url) // function just open browser and use new FF driver (11:32 26.06)
         {
             _WebDriver = new FirefoxDriver();
+            url = baseUrl + url;
+
+            WebDriver.Manage().Window.Maximize();
             WriteLog.WriteLogToFile("Open Firefox", true);
+            WebDriver.Navigate().GoToUrl(url);
+            WriteLog.WriteLogToFile("Go to " + url + "page", true);
         }
         
         public static void CloseBrowser()               // This Function close coonection and turn off webdriver + browser (15:25 25.06.)  
         {
             WebDriver.Quit();
+            WriteLog.WriteLogToFile("Closing the connection... Closing the browser.", true);
         }
 
-        public static void OpenPage(string url)
-        {
-            TestFramework.WebDriver.Manage().Window.Maximize();
-            url = baseUrl + url;
-            TestFramework.OpenURL("url");
-            WriteLog.WriteLogToFile("Go to Home page", true);
-        }
-
-        public static void OpenURL(string URL)
-        {
-            WebDriver.Navigate().GoToUrl(URL);
-        }
-  
         public static IWebElement FindElementByParameter(WebItem webItem)
             {
-                int timeoutInSeconds = 10; // always use 1 second wait
+                int timeoutInSeconds = 10; // always use 10 second wait
 
                 if (webItem.xPath != "")
                 {
@@ -195,14 +188,14 @@ namespace ClassLibrary1
         public static void OpenHomePage()
         {
             TestFramework.WebDriver.Manage().Window.Maximize();
-            TestFramework.OpenURL("https://www.overnightprints.com/");
+            //TestFramework.OpenURL("https://www.overnightprints.com/");
             WriteLog.WriteLogToFile("Go to Home page", true);
         }
         
         public static void OpenLoginPage()              // This function open LogIn page (11:52 18.06.2013)
         {
             TestFramework.WebDriver.Manage().Window.Maximize();
-            TestFramework.OpenURL("https://www.overnightprints.com/login");
+            //TestFramework.OpenURL("https://www.overnightprints.com/login");
             WriteLog.WriteLogToFile("Go to Login page", true);
         }
     }
