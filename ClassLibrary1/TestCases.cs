@@ -58,14 +58,6 @@ public class TestCases    // Create Test Case class for test cases functons
         //ApprovalWebItems.RadioFullUVFront.Click();
         //ApprovalWebItems.CheckBoxRoundedCorners.Click();
         //WebItem.ChooseDropDownMenuOption("8");
-
-        Product product = new Product("Address Labels", "none", "Uploader", "none", "none", 1080, false, "Economy", @"E:\images\1.jpg", @"", "");
-        product.Choose_Product();
-        product.ChooseDesigner();
-        product.UploadImages();
-        product.ApprovalPage();
-
-
         //TestFramework.CloseBrowser();
         System.Threading.Thread.Sleep(4000);
         WriteLog.WriteLogToFile("Browser closed", true);

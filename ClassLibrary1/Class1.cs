@@ -177,32 +177,6 @@ namespace ClassLibrary1
             }
             return lineArray;
         }
-        public static string FindPricePosition(Product product)  // this function finds from table of prices some price and returns position on DD menu
-        {
-            string PricePath = @"E:\products\" + product.ProductType + ".txt";
-            System.IO.StreamReader PriceFile = new System.IO.StreamReader(PricePath, true);
-            int i = 1;
-            string line;
-            string[] lineArray = new string[50];// = { "asd", "asdasd" };
-            while ((line = PriceFile.ReadLine()) != null)
-            {
-                lineArray[i] = line;
-                i = i + 1;
-            }
-
-            for (i = 1; i <= lineArray.Length; i++)
-            {
-                if (lineArray[i] != null)
-                {
-                    if (lineArray[i].IndexOf(product.Quantity.ToString()) != -1)
-                    {
-                        return i.ToString();
-                    }
-                }
-                else break;
-            }
-            return null;  // need to add exception when null comes
-        }
     }
 
     public class WebItem  // Next step : We'll create test class WebItem, which help us with page's elements (Abdulin R.M. 22.00 28.05.2013)
@@ -211,10 +185,8 @@ namespace ClassLibrary1
         public string Name;
         public string xPath;
 
-        public WebItem(/*string ID, string Name,*/ string xPath)
+        public WebItem(string xPath)
         {
-            /*this.ID = ID;
-            this.Name = Name;  // All elements ClassName was changed by Name (23:49 28.05.2013)*/
             this.xPath = xPath;
         }
 
@@ -252,143 +224,6 @@ namespace ClassLibrary1
             }
             return "";
         }
-
-        public static void ChooseDropDownMenuOption(Product product, string elementPosition)
-        {            
-            switch (product.MagnetsQty)
-            {
-                case null :
-                    System.Threading.Thread.Sleep(2000);
-                    System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> collectionSelector;
-                    collectionSelector = TestFramework.WebDriver.FindElementsByClassName("sbSelector");
-                    IWebElement[] elementArray = new IWebElement[5];
-                    collectionSelector.CopyTo(elementArray, 0);
-                    elementArray[0].Click();
-                    
-                    System.Threading.Thread.Sleep(2000);
-                    
-                    System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> collectionOptoins;
-                    collectionOptoins = TestFramework.WebDriver.FindElementsByClassName("sbOptions");
-                    IWebElement[] elementArrayOptions = new IWebElement[5];
-                    collectionOptoins.CopyTo(elementArrayOptions, 0);
-                    
-                    string elementId = elementArrayOptions[0].GetAttribute("id");
-                    string elementXPath = ".//*[@id='" + elementId + "']/li[" + elementPosition + "]/a";
-                    WriteLog.WriteLogToFile("Click on finding element :" + TestFramework.WebDriver.FindElementByXPath(elementXPath).Text, true);
-                    TestFramework.WebDriver.FindElementByXPath(elementXPath).Click();
-                    break;
-                default :
-                    System.Threading.Thread.Sleep(2000);
-                    System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> collectionSelectorDefault;
-                    collectionSelectorDefault = TestFramework.WebDriver.FindElementsByClassName("sbSelector");
-                    IWebElement[] elementArrayDefault = new IWebElement[5];
-                    collectionSelectorDefault.CopyTo(elementArrayDefault, 0);
-                    elementArrayDefault[1].Click();
-
-                    System.Threading.Thread.Sleep(2000);
-
-                    System.Collections.ObjectModel.ReadOnlyCollection<IWebElement> collectionOptoinsDefault;
-                    collectionOptoinsDefault = TestFramework.WebDriver.FindElementsByClassName("sbOptions");
-                    IWebElement[] elementArrayOptionsDefault = new IWebElement[5];
-                    collectionOptoinsDefault.CopyTo(elementArrayOptionsDefault, 0);
-
-                    string elementIdDefault = elementArrayOptionsDefault[1].GetAttribute("id");
-                    string elementXPathDefault = ".//*[@id='" + elementIdDefault + "']/li[" + elementPosition + "]/a";
-                    WriteLog.WriteLogToFile("Click on finding element :" + TestFramework.WebDriver.FindElementByXPath(elementXPathDefault).Text, true);
-                    TestFramework.WebDriver.FindElementByXPath(elementXPathDefault).Click();
-                    break;
-            }                       
-        }
-
-        //public static void UseFile(string path)
-        //{
-        //    TestFramework.FindElementByParameter(this).SendKeys("path");
-        //}
-
-    }
-
-    public class Product  // This one was created for product object
-    {
-        public string ProductType; // ('BC'/'CDMagnet'/'Letterhead')
-        public string ProductSize; // ('4x6'/'8.5x11') - It needs to choose radiobutton
-        public string FrontOption ; // ('none'/'full'/'spot')
-        public string BackOption; // ('none'/'full'/'spot')
-        public ushort Quantity; // an positive count
-        public Boolean RoundedCorners; // (yes/no)
-        public string DeliveryType; //('Economy'/'Standart'/'Fast3D'/'Fast2D'/'Fast1D'/'BitGit')
-        public string File1;  // path for file1
-        public string File2;  // path for file2
-        public string Designer; // 'Uploader'/'DV2'/'DaVinci'/'Express'
-        public string MagnetsQty;  // 'qty'
-
-        public Product(string ProductType, string ProductSize, string Designer, string FrontOption, string BackOption, ushort Quantity, Boolean RoundedCorners, string DeliveryType, string File1, string File2, string MagnetsQty) // Class for Product information
-        {
-            this.ProductType = ProductType;
-            this.ProductSize = ProductSize;
-            this.Designer = Designer;
-            this.FrontOption = FrontOption;
-            this.BackOption = BackOption;
-            this.Quantity = Quantity;
-            this.RoundedCorners = RoundedCorners;
-            this.DeliveryType = DeliveryType;
-            this.File1 = File1;
-            this.File2 = File2;
-        }
-
-        public void Choose_Product() // Choose product by product type
-        {
-            //LoginWebItems.AllProductsSpan.Hover();
-            TestFramework.WebDriver.FindElementByLinkText(this.ProductType).Click();
-            WriteLog.WriteLogToFile("Choose "+this.ProductType, true);
-        }
-
-        public void ChooseDesigner() // choose designer, need to be updated (add DV2, DaVinci and Express)
-        {
-            System.Threading.Thread.Sleep(4000);
-            switch(this.Designer)
-            {
-                case "Uploader":
-                    ProductWebItems.UploadDesignButton.Click();
-                    WriteLog.WriteLogToFile("Uploader Designer was choosen", true);
-                    break;
-                default :
-                    ProductWebItems.UploadDesignButton.Click();
-                    WriteLog.WriteLogToFile("Uploader Designer was choosen by default", true);
-                    break;
-            }
-        }
-        
-        public void UploadImages() // Upload Files in Uploader Designer
-        {
-            UploaderWebItems.SelectFileLinkFront.Click();
-            UploaderWebItems.SelectFileFieldFront.SetValue(this.File1);
-            WriteLog.WriteLogToFile("File : " + this.File1 + "was uploaded", true);
-            //TestFramework.Delay(10);
-            if (this.File2 != "")
-            {
-                UploaderWebItems.SelectFileLinkBack.Click();
-                UploaderWebItems.SelectFileFieldBack.SetValue(this.File2);
-                WriteLog.WriteLogToFile("File : " + this.File2 + "was uploaded", true);
-                //TestFramework.Delay(5);
-            }
-            UploaderWebItems.ContinueButton.Click();
-            // It should be Spot_UV added
-        }
-
-        public void ApprovalPage()
-        {
-            //TestFramework.Delay(3);
-            if (this.FrontOption == "full")
-                ApprovalWebItems.RadioFullUVFront.Click();
-            if (this.BackOption == "full")
-                ApprovalWebItems.RadioFullUVBack.Click();
-            if (this.RoundedCorners == true)
-                ApprovalWebItems.CheckBoxRoundedCorners.Click();
-            
-            WebItem.ChooseDropDownMenuOption(this, WriteLog.FindPricePosition(this));
-            ApprovalWebItems.ContinueButton.Click();
-        }
-
     }
 
     public class PagesActions   // Create PageActions clss, which will do some actions for open pages of our website. We should miss hardcode (Abdulin R.M. 22.25 28.05.2013)
