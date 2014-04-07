@@ -205,34 +205,6 @@ namespace ClassLibrary1
         }
     }
 
-    public class VerifyClass  // This class was created for store verify methods (25.06 12:09)
-    {
-        public static string loginFile = XmlWork.XmlParseMajorCriteria("parameters.xml", "login");
-
-        public static bool VerifyLoginText(string loginText)            // Function verify text on page after user logged with text on xml file (25.06 12:09)
-        {
-            if (loginText != XmlWork.XmlParseMajorCriteria(loginFile, "name"))
-                return false;
-            else
-                return true;
-        }
-
-        public static bool VerifyElementDisplayed(WebItem webitem)      // Function verify element enabled or not (11:52 27.06)
-        {
-            IWebElement element = TestFramework.FindElementByParameter(webitem);
-            if (element != null)
-            {
-                WriteLog.WriteResult("Verification successful : " + webitem.Name);
-                return true;
-            }
-            else
-            {
-                WriteLog.WriteResult("Verification failed : " + webitem.Name);
-                return false;
-            }
-        }
-    }
-
     public class WebItem  // Next step : We'll create test class WebItem, which help us with page's elements (Abdulin R.M. 22.00 28.05.2013)
     {
         public string ID;
