@@ -56,7 +56,7 @@ namespace ClassLibrary1
 
         public static IWebElement FindElement(WebItem webItem)
             {
-                int timeoutInSeconds = 10; // always use 10 second wait
+                int timeoutInSeconds = 30; // always use 30 second wait
 
                 if (webItem.xPath != "")
                 {
@@ -80,7 +80,7 @@ namespace ClassLibrary1
             }
     }
 
-    public class WebItem  // Next step : We'll create test class WebItem, which help us with page's elements (Abdulin R.M. 22.00 28.05.2013)
+    public class WebItem : TestFramework // Next step : We'll create test class WebItem, which help us with page's elements (Abdulin R.M. 22.00 28.05.2013)
     {
         public string ID;
         public string Name;
@@ -94,12 +94,13 @@ namespace ClassLibrary1
         public void Click()
         {
             WriteLog.WriteLogToFile("Click on finding element with xPath:" + this.xPath, true);
-            TestFramework.FindElement(this).Click();
+            FindElement(this).Click();
         }
 
-        public void SetValue(string Value)
+        public void SetValue(string value)
         {
-            TestFramework.FindElement(this).SendKeys(Value);
+            WriteLog.WriteLogToFile("Input : \"" + value + "\" in field with xPath: "+ this.xPath, true);
+            FindElement(this).SendKeys(value);
         }
 
         public void Hover()             // This function move to element and hover on this one (Adbulin 11:30 18.06.2013)
@@ -108,6 +109,26 @@ namespace ClassLibrary1
             IWebElement hoverElement = TestFramework.FindElement(this);
             builder.MoveToElement(hoverElement).Perform();
             WriteLog.WriteLogToFile("Hovering ..... next - a little delay (1 second)", true);
+        }
+
+        public void SelectFromMenu(string value)
+        {
+            FindElement(this).Click();
+            System.Threading.Thread.Sleep(1000);
+            WriteLog.WriteLogToFile("Select : \"" + value + "\" from menu with xPath: " + this.xPath, true);
+            WebDriver.FindElementByPartialLinkText(value).Click();          
+        }
+
+        public void AttachFile(string filename)
+        {
+            IWebElement element = FindElement(this);
+            WriteLog.WriteLogToFile("Attaching file : \"" + filename + "\" at the element with xPath: " + this.xPath, true);
+            element.SendKeys(filename);
+        }
+
+        public void WaitForElementPresent()
+        {
+            FindElement(this);
         }
     }
 }

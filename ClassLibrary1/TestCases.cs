@@ -1,7 +1,7 @@
 ﻿using System;
 using ClassLibrary1;
 
-public class TestCases    // Create Test Case class for test cases functons
+public class TestCases   // Create Test Case class for test cases functons
 {
     public static int total = 0;
 
@@ -32,5 +32,15 @@ public class TestCases    // Create Test Case class for test cases functons
         System.Threading.Thread.Sleep(4000);
         WriteLog.WriteLogToFile("Browser closed", true);
         WriteLog.WriteLogToFile("<-------------------------------Test Case ending ------------------------------->", true);
+    }
+
+    public static void TestForNewFunctions2()
+    {
+        TestFramework.OpenBrowser("/login");
+        LoginWebItems.UserNameTextBox.SetValue("ruslan.abdulin@opensoftdev.ru");
+        LoginWebItems.PasswordTextBox.SelectFromMenu("123456");
+        LoginWebItems.LoginButton.Click();
+        VerifyClass.VerifyTextInTheElement("Ruslanko Stepanko", MainPage.linkUsename);
+        TestFramework.CloseBrowser();
     }
 }

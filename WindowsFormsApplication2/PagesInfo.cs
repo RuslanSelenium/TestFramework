@@ -26,7 +26,7 @@ namespace WindowsFormsApplication2
 
         public string[] LoadInfoAboutPages(string filename)
         {
-            filename = @"E:\ProjectRepo\TestFramework\ClassLibrary1\" + filename + ".cs";
+            filename = @"E:\ProjectRepo\TestFramework\ClassLibrary1\pages\" + filename + ".cs";
             string line;
             int i = 0;
             int counter = 0;

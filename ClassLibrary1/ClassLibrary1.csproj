@@ -64,15 +64,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasePage.cs" />
+    <Compile Include="pages\BasePage.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="ApprovalPage.cs" />
+    <Compile Include="pages\ApprovalPage.cs" />
     <Compile Include="AssertClass.cs" />
+    <Compile Include="pages\MainPage.cs" />
     <Compile Include="WriteLog.cs" />
     <Compile Include="TestCases.cs" />
-    <Compile Include="UploaderPage.cs" />
-    <Compile Include="ProductPage.cs" />
-    <Compile Include="LoginPage.cs" />
+    <Compile Include="pages\UploaderPage.cs" />
+    <Compile Include="pages\ProductPage.cs" />
+    <Compile Include="pages\LoginPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
